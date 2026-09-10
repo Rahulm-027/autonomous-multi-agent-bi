@@ -17,6 +17,17 @@ agents plan, execute, self-correct, and synthesise results from real data.
 
 ---
 
+## Highlights
+
+- 6-agent LangGraph architecture with Supervisor → specialised agents → Critic
+- Deterministic validation with targeted retries and fail-closed execution
+- 100% execution, schema, value, row-count and ordering accuracy across 15 SQL benchmarks
+- 100% Critic Precision, Recall and F1 across 10 validation cases
+- 8.8/10 mean end-to-end LLM-as-judge quality score
+- 88 automated tests passing
+
+---
+
 ## Architecture
 
 ```
@@ -84,7 +95,7 @@ Business Analyst with unvalidated data.
 | Component | Technology |
 |---|---|
 | Agent orchestration | LangGraph (StateGraph, conditional edges) |
-| LLM | Groq API — Llama 3.3 70B (free tier) |
+| LLM | Groq API — gpt-oss-120b (free tier) |
 | Database | DuckDB (in-process, no server) |
 | Data wrangling | Pandas, NumPy |
 | Statistics | SciPy (t-test, Mann-Whitney, ANOVA, chi-squared, Spearman) |
@@ -93,7 +104,7 @@ Business Analyst with unvalidated data.
 | Visualisation | Plotly |
 | UI | Streamlit |
 | Validation | Pydantic (plan schemas) |
-| Tests | pytest (86 tests, 100% passing) |
+| Tests | pytest (88 tests, 100% passing) |
 
 ---
 
@@ -101,7 +112,7 @@ Business Analyst with unvalidated data.
 
 ### Prerequisites
 - Python 3.10 or 3.11 (3.12 also works)
-- Free Groq API key: https://console.groq.com (no credit card needed)
+- Free Groq API key: https://console.groq.com
 - Olist dataset CSVs: https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 
 ### 1. Place CSV files
@@ -156,7 +167,7 @@ Expected output: 9 tables confirmed + `GROQ_OK`
 ```bash
 python -m pytest tests/ -v
 ```
-Expected: 86 passed
+Expected: 88 passed
 
 ---
 
@@ -235,9 +246,11 @@ Analyst receives this registry and is instructed to cite evidence IDs
 ## Evaluation Methodology
 
 ### SQL evaluation
-- 15 test cases
-- Metrics: execution success rate, schema correctness rate
-- Does NOT count "non-empty result" as correct — schema is checked separately
+- 15 curated benchmark queries
+- Metrics: execution success, schema correctness, value correctness,
+  row-count correctness, and ordering correctness
+- Does NOT count "non-empty result" as correct — schema and result properties
+  are checked separately
 
 ### Critic evaluation (confusion matrix)
 - 5 valid inputs (should PASS) → TN if passed, FP if failed
@@ -249,18 +262,37 @@ Analyst receives this registry and is instructed to cite evidence IDs
 - Scored 0–10 by a separate LLM call on accuracy, completeness, actionability
 - **Labelled as LLM-based quality estimate, NOT ground-truth accuracy**
 
-### Evaluation results
-Run `python evaluation/evaluate.py` to get your actual measured results.
-Results will appear in `evaluation/results.json` and in the Streamlit Evaluation tab.
+### Evaluation Results
 
-**No fabricated metrics are included in this README.**
+The system was evaluated on 15 curated SQL benchmark queries, 10 Critic
+validation cases, and 4 end-to-end pipeline runs.
+
+| Evaluation | Result |
+|---|---:|
+| SQL execution accuracy | 100% |
+| SQL schema accuracy | 100% |
+| SQL value accuracy | 100% |
+| SQL row-count accuracy | 100% |
+| SQL ordering accuracy | 100% |
+| Critic Precision | 100% |
+| Critic Recall | 100% |
+| Critic F1 | 100% |
+| End-to-end LLM-as-judge | 8.8/10 |
+| Average retries | 0.0 |
+
+Detailed evaluation output is available in
+[`evaluation/results.json`](evaluation/results.json).
+
+> **Note:** The LLM-as-judge score is a quality estimate based on
+> accuracy, completeness, and actionability. It is not ground-truth
+> analytical accuracy.
 
 ---
 
 ## Limitations
 
-- The Groq free tier has rate limits (~14k requests/day for Llama 3.3 70B). Heavy
-  testing may hit these limits. Switch to Ollama for unlimited local inference.
+- The Groq free tier has rate limits. Heavy testing may hit these limits.
+  Switch to Ollama for unlimited local inference.
 - Prophet forecasting requires ≥ 12 monthly observations (configurable).
 - RFM segmentation uses only delivered orders. Customers with no delivered orders
   are excluded.
@@ -290,7 +322,8 @@ retail_agent/
 ├── app/
 │   └── streamlit_app.py      3-tab Streamlit UI
 ├── evaluation/
-│   └── evaluate.py           SQL accuracy + Critic confusion matrix + LLM-judge
+│   ├── evaluate.py           SQL accuracy + Critic confusion matrix + LLM-judge
+│   └── results.json          Latest benchmark evaluation results
 ├── tests/
 │   ├── test_sql_validator.py 17 SQL safety/schema tests
 │   ├── test_critic.py        15 Critic tests (valid + invalid + fail-closed)
@@ -306,37 +339,3 @@ retail_agent/
 ```
 
 ---
-
-## CV Bullet Points
-
-Fill in your actual measured numbers from `python evaluation/evaluate.py`:
-
-```
-• Designed a LangGraph supervisor-worker multi-agent system (6 agents: Supervisor,
-  SQL, EDA/Stats, ML, Business Analyst, Critic) with Pydantic-validated plan schemas,
-  shared TypedDict state, conditional routing, and a fail-closed Critic Agent; achieved
-  __% SQL execution success rate across 15 benchmark queries on the Olist dataset.
-
-• Built an ML Agent performing RFM segmentation (recency/frequency/monetary computed
-  directly from 100k transactional records, not proxy columns), K-Means with
-  silhouette-selected k (best score: __), and Prophet demand forecasting benchmarked
-  against Naive and Seasonal Naive baselines on a chronological holdout (MAE: __, RMSE: __).
-
-• Implemented a deterministic Critic Agent with a confusion matrix evaluation:
-  TP=__, TN=__, Precision=__%, Recall=__% across 10 valid/invalid test cases;
-  integrated a fail-closed terminal node that halts the pipeline rather than generating
-  reports from unvalidated analysis.
-
-• Evaluated end-to-end report quality using LLM-as-judge scoring (mean __/10 on
-  accuracy, completeness, actionability); all code verified by 86 unit tests (pytest)
-  covering SQL safety, statistical functions, Critic logic, and forecasting utilities.
-```
-
----
-
-## Technical Skills Line
-
-```
-Python · LangGraph · LangChain · Pydantic · DuckDB · Pandas · Scikit-learn ·
-SciPy · Prophet · Plotly · Streamlit · Groq API · pytest
-```
