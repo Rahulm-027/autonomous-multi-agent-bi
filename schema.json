@@ -1,0 +1,318 @@
+{
+  "categories": {
+    "columns": {
+      "product_category_name": "VARCHAR",
+      "product_category_name_english": "VARCHAR"
+    },
+    "sample_rows": [
+      {
+        "product_category_name": "beleza_saude",
+        "product_category_name_english": "health_beauty"
+      },
+      {
+        "product_category_name": "informatica_acessorios",
+        "product_category_name_english": "computers_accessories"
+      },
+      {
+        "product_category_name": "automotivo",
+        "product_category_name_english": "auto"
+      }
+    ]
+  },
+  "customers": {
+    "columns": {
+      "customer_id": "VARCHAR",
+      "customer_unique_id": "VARCHAR",
+      "customer_zip_code_prefix": "VARCHAR",
+      "customer_city": "VARCHAR",
+      "customer_state": "VARCHAR"
+    },
+    "sample_rows": [
+      {
+        "customer_id": "06b8999e2fba1a1fbc88172c00ba8bc7",
+        "customer_unique_id": "861eff4711a542e4b93843c6dd7febb0",
+        "customer_zip_code_prefix": "14409",
+        "customer_city": "franca",
+        "customer_state": "SP"
+      },
+      {
+        "customer_id": "18955e83d337fd6b2def6b18a428ac77",
+        "customer_unique_id": "290c77bc529b7ac935b93aa66c333dc3",
+        "customer_zip_code_prefix": "09790",
+        "customer_city": "sao bernardo do campo",
+        "customer_state": "SP"
+      },
+      {
+        "customer_id": "4e7b3e00288586ebd08712fdd0374a03",
+        "customer_unique_id": "060e732b5b29e8181a18229c7b0b2b5e",
+        "customer_zip_code_prefix": "01151",
+        "customer_city": "sao paulo",
+        "customer_state": "SP"
+      }
+    ]
+  },
+  "geolocation": {
+    "columns": {
+      "geolocation_zip_code_prefix": "VARCHAR",
+      "geolocation_lat": "DOUBLE",
+      "geolocation_lng": "DOUBLE",
+      "geolocation_city": "VARCHAR",
+      "geolocation_state": "VARCHAR"
+    },
+    "sample_rows": [
+      {
+        "geolocation_zip_code_prefix": "01037",
+        "geolocation_lat": -23.54562128115268,
+        "geolocation_lng": -46.63929204800168,
+        "geolocation_city": "sao paulo",
+        "geolocation_state": "SP"
+      },
+      {
+        "geolocation_zip_code_prefix": "01046",
+        "geolocation_lat": -23.546081127035535,
+        "geolocation_lng": -46.64482029837157,
+        "geolocation_city": "sao paulo",
+        "geolocation_state": "SP"
+      },
+      {
+        "geolocation_zip_code_prefix": "01046",
+        "geolocation_lat": -23.54612896641469,
+        "geolocation_lng": -46.64295148361138,
+        "geolocation_city": "sao paulo",
+        "geolocation_state": "SP"
+      }
+    ]
+  },
+  "order_items": {
+    "columns": {
+      "order_id": "VARCHAR",
+      "order_item_id": "BIGINT",
+      "product_id": "VARCHAR",
+      "seller_id": "VARCHAR",
+      "shipping_limit_date": "TIMESTAMP",
+      "price": "DOUBLE",
+      "freight_value": "DOUBLE"
+    },
+    "sample_rows": [
+      {
+        "order_id": "00010242fe8c5a6d1ba2dd792cb16214",
+        "order_item_id": 1,
+        "product_id": "4244733e06e7ecb4970a6e2683c13e61",
+        "seller_id": "48436dade18ac8b2bce089ec2a041202",
+        "shipping_limit_date": "2017-09-19 09:45:35",
+        "price": 58.9,
+        "freight_value": 13.29
+      },
+      {
+        "order_id": "00018f77f2f0320c557190d7a144bdd3",
+        "order_item_id": 1,
+        "product_id": "e5f2d52b802189ee658865ca93d83a8f",
+        "seller_id": "dd7ddc04e1b6c2c614352b383efe2d36",
+        "shipping_limit_date": "2017-05-03 11:05:13",
+        "price": 239.9,
+        "freight_value": 19.93
+      },
+      {
+        "order_id": "000229ec398224ef6ca0657da4fc703e",
+        "order_item_id": 1,
+        "product_id": "c777355d18b72b67abbeef9df44fd0fd",
+        "seller_id": "5b51032eddd242adc84c38acab88f23d",
+        "shipping_limit_date": "2018-01-18 14:48:30",
+        "price": 199.0,
+        "freight_value": 17.87
+      }
+    ]
+  },
+  "orders": {
+    "columns": {
+      "order_id": "VARCHAR",
+      "customer_id": "VARCHAR",
+      "order_status": "VARCHAR",
+      "order_purchase_timestamp": "TIMESTAMP",
+      "order_approved_at": "TIMESTAMP",
+      "order_delivered_carrier_date": "TIMESTAMP",
+      "order_delivered_customer_date": "TIMESTAMP",
+      "order_estimated_delivery_date": "TIMESTAMP"
+    },
+    "sample_rows": [
+      {
+        "order_id": "e481f51cbdc54678b7cc49136f2d6af7",
+        "customer_id": "9ef432eb6251297304e76186b10a928d",
+        "order_status": "delivered",
+        "order_purchase_timestamp": "2017-10-02 10:56:33",
+        "order_approved_at": "2017-10-02 11:07:15",
+        "order_delivered_carrier_date": "2017-10-04 19:55:00",
+        "order_delivered_customer_date": "2017-10-10 21:25:13",
+        "order_estimated_delivery_date": "2017-10-18 00:00:00"
+      },
+      {
+        "order_id": "53cdb2fc8bc7dce0b6741e2150273451",
+        "customer_id": "b0830fb4747a6c6d20dea0b8c802d7ef",
+        "order_status": "delivered",
+        "order_purchase_timestamp": "2018-07-24 20:41:37",
+        "order_approved_at": "2018-07-26 03:24:27",
+        "order_delivered_carrier_date": "2018-07-26 14:31:00",
+        "order_delivered_customer_date": "2018-08-07 15:27:45",
+        "order_estimated_delivery_date": "2018-08-13 00:00:00"
+      },
+      {
+        "order_id": "47770eb9100c2d0c44946d9cf07ec65d",
+        "customer_id": "41ce2a54c0b03bf3443c3d931a367089",
+        "order_status": "delivered",
+        "order_purchase_timestamp": "2018-08-08 08:38:49",
+        "order_approved_at": "2018-08-08 08:55:23",
+        "order_delivered_carrier_date": "2018-08-08 13:50:00",
+        "order_delivered_customer_date": "2018-08-17 18:06:29",
+        "order_estimated_delivery_date": "2018-09-04 00:00:00"
+      }
+    ]
+  },
+  "payments": {
+    "columns": {
+      "order_id": "VARCHAR",
+      "payment_sequential": "BIGINT",
+      "payment_type": "VARCHAR",
+      "payment_installments": "BIGINT",
+      "payment_value": "DOUBLE"
+    },
+    "sample_rows": [
+      {
+        "order_id": "b81ef226f3fe1789b1e8b2acac839d17",
+        "payment_sequential": 1,
+        "payment_type": "credit_card",
+        "payment_installments": 8,
+        "payment_value": 99.33
+      },
+      {
+        "order_id": "a9810da82917af2d9aefd1278f1dcfa0",
+        "payment_sequential": 1,
+        "payment_type": "credit_card",
+        "payment_installments": 1,
+        "payment_value": 24.39
+      },
+      {
+        "order_id": "25e8ea4e93396b6fa0d3dd708e76c1bd",
+        "payment_sequential": 1,
+        "payment_type": "credit_card",
+        "payment_installments": 1,
+        "payment_value": 65.71
+      }
+    ]
+  },
+  "products": {
+    "columns": {
+      "product_id": "VARCHAR",
+      "product_category_name": "VARCHAR",
+      "product_name_lenght": "BIGINT",
+      "product_description_lenght": "BIGINT",
+      "product_photos_qty": "BIGINT",
+      "product_weight_g": "BIGINT",
+      "product_length_cm": "BIGINT",
+      "product_height_cm": "BIGINT",
+      "product_width_cm": "BIGINT"
+    },
+    "sample_rows": [
+      {
+        "product_id": "1e9e8ef04dbcff4541ed26657ea517e5",
+        "product_category_name": "perfumaria",
+        "product_name_lenght": 40,
+        "product_description_lenght": 287,
+        "product_photos_qty": 1,
+        "product_weight_g": 225,
+        "product_length_cm": 16,
+        "product_height_cm": 10,
+        "product_width_cm": 14
+      },
+      {
+        "product_id": "3aa071139cb16b67ca9e5dea641aaa2f",
+        "product_category_name": "artes",
+        "product_name_lenght": 44,
+        "product_description_lenght": 276,
+        "product_photos_qty": 1,
+        "product_weight_g": 1000,
+        "product_length_cm": 30,
+        "product_height_cm": 18,
+        "product_width_cm": 20
+      },
+      {
+        "product_id": "96bd76ec8810374ed1b65e291975717f",
+        "product_category_name": "esporte_lazer",
+        "product_name_lenght": 46,
+        "product_description_lenght": 250,
+        "product_photos_qty": 1,
+        "product_weight_g": 154,
+        "product_length_cm": 18,
+        "product_height_cm": 9,
+        "product_width_cm": 15
+      }
+    ]
+  },
+  "reviews": {
+    "columns": {
+      "review_id": "VARCHAR",
+      "order_id": "VARCHAR",
+      "review_score": "BIGINT",
+      "review_comment_title": "VARCHAR",
+      "review_comment_message": "VARCHAR",
+      "review_creation_date": "TIMESTAMP",
+      "review_answer_timestamp": "TIMESTAMP"
+    },
+    "sample_rows": [
+      {
+        "review_id": "7bc2406110b926393aa56f80a40eba40",
+        "order_id": "73fc7af87114b39712e6da79b0a377eb",
+        "review_score": 4,
+        "review_comment_title": null,
+        "review_comment_message": null,
+        "review_creation_date": "2018-01-18 00:00:00",
+        "review_answer_timestamp": "2018-01-18 21:46:59"
+      },
+      {
+        "review_id": "80e641a11e56f04c1ad469d5645fdfde",
+        "order_id": "a548910a1c6147796b98fdf73dbeba33",
+        "review_score": 5,
+        "review_comment_title": null,
+        "review_comment_message": null,
+        "review_creation_date": "2018-03-10 00:00:00",
+        "review_answer_timestamp": "2018-03-11 03:05:13"
+      },
+      {
+        "review_id": "228ce5500dc1d8e020d8d1322874b6f0",
+        "order_id": "f9e4b658b201a9f2ecdecbb34bed034b",
+        "review_score": 5,
+        "review_comment_title": null,
+        "review_comment_message": null,
+        "review_creation_date": "2018-02-17 00:00:00",
+        "review_answer_timestamp": "2018-02-18 14:36:24"
+      }
+    ]
+  },
+  "sellers": {
+    "columns": {
+      "seller_id": "VARCHAR",
+      "seller_zip_code_prefix": "VARCHAR",
+      "seller_city": "VARCHAR",
+      "seller_state": "VARCHAR"
+    },
+    "sample_rows": [
+      {
+        "seller_id": "3442f8959a84dea7ee197c632cb2df15",
+        "seller_zip_code_prefix": "13023",
+        "seller_city": "campinas",
+        "seller_state": "SP"
+      },
+      {
+        "seller_id": "d1b65fc7debc3361ea86b5f14c68d2e2",
+        "seller_zip_code_prefix": "13844",
+        "seller_city": "mogi guacu",
+        "seller_state": "SP"
+      },
+      {
+        "seller_id": "ce3ad9de960102d0677a81f5d0bb7b2d",
+        "seller_zip_code_prefix": "20031",
+        "seller_city": "rio de janeiro",
+        "seller_state": "RJ"
+      }
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+# Environment
+.env
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Testing / tooling
+.pytest_cache/
+.mypy_cache/
+
+# OS
+.DS_Store
+
+# Local database
+db/*.duckdb
+
+# Local datasets
+data/
+
+# Generated evaluation output
+evaluation/results.json
+
+# Generated interactive figures
+figures/*.html
+
+# Build / distribution artifacts
+.dist/
+dist/
+build/
+*.egg-info/
